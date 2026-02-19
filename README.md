@@ -4,22 +4,22 @@
 
 ## ETAPA 1 - Instalar o Node.js
 
-1. Acesse **https://nodejs.org/pt-br/download** no navegador
-2. Baixe a versao **LTS** (recomendado - atualmente 20.x ou 22.x)
-3. Execute o instalador `.msi` e siga o wizard:
-   - Marque a opcao **"Add to PATH"** (vem marcada por padrao)
-   - Marque **"Automatically install necessary tools"** se aparecer
-4. Apos instalar, **feche e reabra o terminal** (PowerShell ou CMD)
-5. Verifique a instalacao:
+1. Acesse **https://nodejs.org/pt-br/download** no navegador  
+2. Baixe a versão **LTS** (recomendado – atualmente 20.x ou 22.x)  
+3. Execute o instalador `.msi` e siga o wizard:  
+   - Marque a opção **"Add to PATH"** (vem marcada por padrão)  
+   - Marque **"Automatically install necessary tools"** se aparecer  
+4. Após instalar, **feche e reabra o terminal** (PowerShell ou CMD)  
+5. Verifique a instalação:
 
 ```powershell
 node --version
 npm --version
 ```
 
-> **Alternativa (recomendada para devs):** Use o **nvm-windows** para gerenciar versoes do Node:
+> **Alternativa (recomendada para devs):** Use o **nvm-windows** para gerenciar versões do Node:
 >
-> - Baixe em: https://github.com/coreybutler/nvm-windows/releases
+> - Baixe em: https://github.com/coreybutler/nvm-windows/releases  
 > - Instale, depois rode:
 >
 > ```powershell
@@ -29,22 +29,23 @@ npm --version
 
 ---
 
-## ETAPA 2 - Instalar o Expo CLI globalmente
+## ETAPA 2 - Ferramentas de linha de comando do Expo
 
-Abra o **PowerShell** ou **Terminal do Windows** e rode:
+Hoje não é mais recomendado instalar o `expo-cli` globalmente.  
+Use sempre o **CLI via npx**, assim:
+
+- Para criar projeto e rodar comandos, use sempre `npx expo ...` dentro do projeto.  
+- Se você for usar builds em nuvem, instale apenas o `eas-cli` globalmente (opcional):
 
 ```powershell
-npm install -g expo-cli
 npm install -g eas-cli
 ```
-
-> O `expo-cli` e o CLI classico. O `eas-cli` e para builds de producao.
 
 ---
 
 ## ETAPA 3 - Criar o projeto React Native com Expo
 
-Navegue ate a pasta do workspace BCS:
+Navegue até a pasta do seu workspace (ajuste o caminho conforme sua máquina):
 
 ```powershell
 cd C:\Users\SEU_USUARIO\Desktop\work\bcs
@@ -56,7 +57,8 @@ Crie o projeto:
 npx create-expo-app@latest nome-do-app
 ```
 
-O wizard vai perguntar o template. Escolha o padrao ou **blank (TypeScript)** para manter consistencia com o restante do projeto (que usa TypeScript).
+O wizard vai perguntar o template.  
+Escolha o padrão ou **blank (TypeScript)** para manter consistência com o restante do projeto (que usa TypeScript).
 
 ---
 
@@ -68,15 +70,15 @@ cd nome-do-app
 
 ---
 
-## ETAPA 5 - Instalar dependencias
+## ETAPA 5 - Instalar dependências
 
-As dependencias ja sao instaladas automaticamente pelo `create-expo-app`, mas se precisar reinstalar:
+As dependências já são instaladas automaticamente pelo `create-expo-app`, mas se precisar reinstalar:
 
 ```powershell
 npm install
 ```
 
-> O projeto existente (`frontend-next`) usa **yarn**. Se preferir manter o padrao:
+> O projeto existente (`frontend-next`) usa **yarn**. Se preferir manter o padrão:
 >
 > ```powershell
 > npm install -g yarn
@@ -87,13 +89,16 @@ npm install
 
 ## ETAPA 6 - Rodar o projeto
 
+Dentro da pasta do projeto, rode:
+
 ```powershell
 npx expo start
 ```
 
-Isso abre o **Metro Bundler** com um QR Code no terminal. Voce tera as seguintes opcoes:
+Isso abre o **Metro Bundler** com um QR Code no terminal.  
+Você terá as seguintes opções:
 
-| Tecla | Acao                      |
+| Tecla | Ação                      |
 | ----- | ------------------------- |
 | `a`   | Abrir no emulador Android |
 | `w`   | Abrir no navegador (web)  |
@@ -101,11 +106,11 @@ Isso abre o **Metro Bundler** com um QR Code no terminal. Voce tera as seguintes
 
 ---
 
-## ETAPA 7 - Testar no celular (opcao mais rapida)
+## ETAPA 7 - Testar no celular (opção mais rápida)
 
-1. Instale o app **Expo Go** no celular (Google Play / App Store)
-2. Escaneie o QR Code que aparece no terminal
-3. O app roda direto no celular via Wi-Fi (celular e PC devem estar na mesma rede)
+1. Instale o app **Expo Go** no celular (Google Play / App Store)  
+2. Escaneie o QR Code que aparece no terminal  
+3. O app roda direto no celular via Wi‑Fi (celular e PC devem estar na mesma rede)
 
 ---
 
@@ -113,18 +118,18 @@ Isso abre o **Metro Bundler** com um QR Code no terminal. Voce tera as seguintes
 
 Se quiser rodar no emulador em vez do celular:
 
-1. Instale o **Android Studio**: https://developer.android.com/studio
-2. No Android Studio, va em **More Actions > SDK Manager**:
-   - Instale o **Android SDK** mais recente
-   - Na aba **SDK Tools**, marque **Android Emulator** e **Android SDK Platform-Tools**
-3. Va em **More Actions > Virtual Device Manager** e crie um dispositivo (ex: Pixel 7, API 34)
-4. Configure a variavel de ambiente `ANDROID_HOME`:
+1. Instale o **Android Studio**: https://developer.android.com/studio  
+2. No Android Studio, vá em **More Actions > SDK Manager**:  
+   - Instale o **Android SDK** mais recente  
+   - Na aba **SDK Tools**, marque **Android Emulator** e **Android SDK Platform-Tools**  
+3. Vá em **More Actions > Virtual Device Manager** e crie um dispositivo (ex: Pixel 7, API 34)  
+4. Configure a variável de ambiente `ANDROID_HOME`:
 
 ```powershell
 [System.Environment]::SetEnvironmentVariable("ANDROID_HOME", "$env:LOCALAPPDATA\Android\Sdk", "User")
 ```
 
-5. Adicione ao PATH:
+5. Adicione o `platform-tools` ao PATH:
 
 ```powershell
 [System.Environment]::SetEnvironmentVariable("Path", "$env:Path;$env:LOCALAPPDATA\Android\Sdk\platform-tools", "User")
@@ -140,14 +145,14 @@ E pressione `a` para abrir no emulador.
 
 ---
 
-## Resumo dos comandos (sequencia completa)
+## Resumo dos comandos (sequência completa)
 
 ```powershell
 # 1. Verificar Node
 node --version
 
-# 2. Instalar ferramentas globais
-npm install -g expo-cli eas-cli
+# 2. (Opcional) Instalar EAS CLI globalmente, se precisar de builds
+npm install -g eas-cli
 
 # 3. Criar projeto
 cd C:\Users\SEU_USUARIO\Desktop\work\bcs
@@ -162,7 +167,7 @@ npx expo start
 
 ## Dicas importantes
 
-- **Firewall:** Se o celular nao conectar, verifique se o Windows Firewall nao esta bloqueando a porta 8081/19000
-- **Mesma rede:** PC e celular DEVEM estar na mesma rede Wi-Fi para o Expo Go funcionar
-- **Tunnel mode:** Se tiver problemas de rede, rode `npx expo start --tunnel` (vai instalar o `@expo/ngrok` automaticamente)
-- **TypeScript:** O projeto BCS existente usa TypeScript, entao recomendo usar o template TS ao criar o app Expo para manter consistencia
+- **Firewall:** Se o celular não conectar, verifique se o Windows Firewall não está bloqueando as portas usadas pelo Expo (como 19000/19001).  
+- **Mesma rede:** PC e celular DEVEM estar na mesma rede Wi‑Fi para o Expo Go funcionar.  
+- **Tunnel mode:** Se tiver problemas de rede, rode `npx expo start --tunnel` (pode instalar o `@expo/ngrok` automaticamente).  
+- **TypeScript:** O projeto BCS existente usa TypeScript, então recomendo usar o template TS ao criar o app Expo para manter consistência.
